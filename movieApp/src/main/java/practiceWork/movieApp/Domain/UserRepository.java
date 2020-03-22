@@ -1,5 +1,9 @@
 package practiceWork.movieApp.Domain;
 
-public interface UserRepository {
+import java.util.List;
 
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, String> {
+	User findByUsername(String username); // Must have!
 }

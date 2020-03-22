@@ -1,5 +1,11 @@
 package practiceWork.movieApp.Domain;
 
-public interface MovieRepository {
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface MovieRepository extends CrudRepository<Movie, String> {
+	
+	List<Movie> findById(int id);
 
 }
