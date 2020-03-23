@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface MovieRepository extends CrudRepository<Movie, String> {
+public interface MovieRepository extends CrudRepository<Movie, Integer> {
 	
-	List<Movie> findById(int id);
+	List<Movie> findByTitle(String title);
 
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface DirectorRepository extends CrudRepository<Director, String> {
+public interface DirectorRepository extends CrudRepository<Director, Integer> {
 	
-	List<Director> findById(int id);
+	List<Director> findByDirName(String dirName);
 }

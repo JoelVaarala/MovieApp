@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface GenreRepository extends CrudRepository<Genre, String> {
+public interface GenreRepository extends CrudRepository<Genre, Integer> {
 
-	List<Genre> findById(int id);
+	List<Genre> findByNameOfGenre(String nameOfGenre);
 	
 }

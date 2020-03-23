@@ -1,10 +1,50 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Movie List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{../css/bootstrap.min.css}" />
 </head>
 <body>
+	<div class="col-md-4">
+		<h1>Movies Movies..</h1>
+	</div>
+	<div class="col-md-4">
+		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-danger"/>
+		</form>
+	</div>
 
+
+	<table class="table table-striped">
+		<tr>
+			<th>Title</th>
+			<th>Genre</th>
+			<th>Director</th>
+			<th>Year</th>
+			<th>Rating</th>
+			<th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+			<th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+			<th hidden="hidden" sec:authorize="hasRole('ADMIN')" />
+
+		</tr>
+		<tr th:each="movie : ${movies}">
+			<td th:text="${movie.title}"></td>
+			<td th:text="${movie.genre.nameOfGenre}"></td>
+			<td th:text="${movie.director.dirName}"></td>
+			<td th:text="${movie.year}"></td>
+			<td th:text="${movie.points}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a
+				class="btn btn-warning" th:href="@{/edit/{id}(id=${movie.id})}">Edit</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a
+				class="btn btn-danger" th:href="@{/deletemovie/{id}(id=${movie.id})}">Delete</a></td>
+		</tr>
+	</table>
+	<a class="btn btn-success" href="/newmovie">Add movie</a>
 </body>
 </html>

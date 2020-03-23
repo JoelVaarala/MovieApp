@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Movie edit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+		<h1>Edit Movie:</h1>
+			<div class="col-md-4">
+			<form action="#" th:action="@{../save}"  th:object= "${movie}" method="post">
+	
+				<input type="hidden" th:field="${movie.id}" class="form-control"/>
+	
+					
+					<div>Title: <input type="text" th:field="${movie.title}" class="form-control"/></div>
+					<div>Year: <input type="text" th:field="${movie.year}" class="form-control"/></div>
+					<div>Points: <input type="text" th:field="${movie.points}" class="form-control"/></div>
+					
+					<label for="genrelist">Genre</label>
+						<select id="genrelist" th:field="*{genre}" class="form-control">
+       						<option th:each="genre: ${genre}" th:value="${genre.genreId}" th:text="${genre.nameOfGenre}"></option>
+    					</select>
+						
+					<label for="directorlist">Director</label>
+						<select id="directorlist" th:field="*{director}" class="form-control">
+       						<option th:each="director: ${director}" th:value="${director.dirId}" th:text="${director.dirName}"></option>
+    					</select>
+	
+				<input type="submit" class="btn btn-primary" value="Save" /> 
+		
+			</form>
+		</div>
+    </div>
+</body>
+</html>

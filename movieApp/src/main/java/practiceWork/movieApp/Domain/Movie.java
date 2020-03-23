@@ -30,6 +30,13 @@ public class Movie {
 	@JoinColumn(name = "dirId")
 	private Director director;
 	
+	public Movie() {
+		super();
+		this.title = null;
+		this.year = 0;
+		this.points = 0;
+	}
+	
 	public Movie(String title, Director director, Genre genre, int year, int points) {
 		super();
 		this.title = title;
