@@ -8,23 +8,40 @@
 	th:href="@{../css/bootstrap.min.css}" />
 </head>
 <body>
-	<div class="col-md-4">
+	
+	<div class="container" sec:authorize="isAuthenticated()">
+	
+	<div class="col-md-4" style="padding:20px 0" >
 		<h1>Movies Movies..</h1>
 	</div>
-	<div class="col-md-4">
-		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
-	</div>
-	<div class="col-md-4" style="padding:20px 0" sec:authorize="isAuthenticated()">
+	
+	<div class="col-md-4" style="padding:30px 0" >
+		<h3 th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>	
+		
+	<div class="col-md-4" style="padding:30px 0">
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-danger"/>
 		</form>
 	</div>
-	<div class="col-md-4" style="padding:20px 0" sec:authorize="isAnonymous()">
+	</div>
+	
+	<div class="container" sec:authorize="isAnonymous()">
+	
+	<div class="col-md-4" style="padding:20px 0" >
+		<h1>Movies Movies..</h1>
+	</div>
+	
+	<div class="col-md-4" style="padding:30px 0">
+		<h3 th:inline="text">Would you like to sign in?</h3>
+	</div>
+	
+	<div class="col-md-4" style="padding:30px 0">
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign in" class="btn btn-primary"/>
 		</form>
 	</div>
-
+	</div>
 
 	<table class="table table-striped">
 		<tr>
@@ -50,6 +67,6 @@
 				class="btn btn-danger" th:href="@{/deletemovie/{id}(id=${movie.id})}">Delete</a></td>
 		</tr>
 	</table>
-	<a class="btn btn-success" href="/newmovie">Add movie</a>
+	<a class="btn btn-success" href="/newmovie" >Add movie</a>
 </body>
 </html>
