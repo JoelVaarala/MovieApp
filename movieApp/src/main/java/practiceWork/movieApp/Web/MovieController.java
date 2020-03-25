@@ -1,6 +1,7 @@
 package practiceWork.movieApp.Web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import practiceWork.movieApp.Domain.Movie;
 import practiceWork.movieApp.Domain.MovieRepository;
@@ -77,6 +79,20 @@ public class MovieController {
 	public String deleteMovie(@PathVariable("id") int movieId) {
 		movieRepository.deleteById(movieId);
 		return "redirect:../movielist";
+	}
+	
+	// Rest contollers
+	
+	// Rest-service for getting all movies (JSON)
+	@RequestMapping(value="/movies", method = RequestMethod.GET)
+	public @ResponseBody List<Movie> movieListRest() {
+		return (List<Movie>) movieRepository.findAll();
+	}
+			
+	// Rest-service for getting movie by Id
+	@RequestMapping(value="/movies/{id}", method = RequestMethod.GET)
+	public @ResponseBody Optional<Movie> findMovieRest(@PathVariable("id") int id) {
+		return movieRepository.findById(id);
 	}
 }
 

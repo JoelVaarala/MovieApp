@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -21,12 +22,12 @@ public class Movie {
 	private int points;
 	
 	@ManyToOne
-	@JsonIgnore
+	@JsonManagedReference
 	@JoinColumn(name = "genreId")/* here genre id */
 	private Genre genre;
 	
 	@ManyToOne
-	@JsonIgnore
+	@JsonManagedReference
 	@JoinColumn(name = "dirId")
 	private Director director;
 	

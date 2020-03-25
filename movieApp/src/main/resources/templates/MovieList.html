@@ -49,7 +49,7 @@
 			<th>Genre</th>
 			<th>Director</th>
 			<th>Year</th>
-			<th>Rating</th>
+			<th style="text-align: center">Rating 0-5</th>
 			<th sec:authorize="hasAuthority('ADMIN')">Edit</th>
 			<th sec:authorize="hasAuthority('ADMIN')">Delete</th>
 			<th hidden="hidden" sec:authorize="hasRole('ADMIN')" />
@@ -60,7 +60,7 @@
 			<td th:text="${movie.genre.nameOfGenre}"></td>
 			<td th:text="${movie.director.dirName}"></td>
 			<td th:text="${movie.year}"></td>
-			<td th:text="${movie.points}"></td>
+			<td th:text="${movie.points}" style="text-align: center"></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a
 				class="btn btn-warning" th:href="@{/edit/{id}(id=${movie.id})}">Edit</a></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a

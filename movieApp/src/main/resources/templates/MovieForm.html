@@ -16,7 +16,7 @@
 						<div><input type="text" id="t" th:field="${movie.title}" /></div><br/>
 		
 					<label for="y">Year :</label> 
-						<div><input type="text" id="y" th:field="${movie.year}" /></div><br/>
+						<div><input type="text" id="y" th:field="${movie.year}" placeholder="2020"/></div><br/>
 						
 					<label for="p">Points :</label> 
 						<div><input type="text" id="p" th:field="${movie.points}" /></div><br/>
@@ -30,7 +30,7 @@
 						<select id="directorlist" th:field="*{director}" class="form-control">
        						<option th:each="director: ${director}" th:value="${director.dirId}" th:text="${director.dirName}"></option>
     					</select>
-    		
+    				<br/>
 						<div><input type="submit" class="btn btn-primary" value="Submit" /> 
 						<input type="reset" class="btn btn-primary" value="Reset" /> </div>
 				</form>

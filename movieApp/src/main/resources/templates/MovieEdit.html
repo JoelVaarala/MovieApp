@@ -6,12 +6,11 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
 </head>
 <body>
-	<div class="container">
-		<h1>Edit Movie:</h1>
 			<div class="col-md-4">
+			<h1>Edit Movie:</h1>
 			<form action="#" th:action="@{../save}"  th:object= "${movie}" method="post">
 	
-				<input type="hidden" th:field="${movie.id}" class="form-control"/>
+				<input type="hidden" th:field="${movie.id}" />
 	
 					
 					<div>Title: <input type="text" th:field="${movie.title}" class="form-control"/></div>
@@ -27,11 +26,11 @@
 						<select id="directorlist" th:field="*{director}" class="form-control">
        						<option th:each="director: ${director}" th:value="${director.dirId}" th:text="${director.dirName}"></option>
     					</select>
-	
+				<br/>
 				<input type="submit" class="btn btn-primary" value="Save" /> 
 		
 			</form>
 		</div>
-    </div>
+    
 </body>
 </html>
