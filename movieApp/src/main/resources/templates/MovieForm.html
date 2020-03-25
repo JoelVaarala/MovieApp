@@ -5,21 +5,27 @@
    	 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
    		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
 </head>
-<body>
+<body style="background-color:lightblue;">
 	<div>
 		<h1>New Movie:</h1>
+		<p th:text="${errorMsg}" style="color:red;"></p>
 			<div class="col-md-4">
-				<form action="#" th:action="@{/save}"  th:object= ${movie} method="post">
+				<form action="#" th:action="@{/save}"  th:object= ${movie} method="post" id="movieForm">
 					
+					<div class="form-group">
+					<label>Title :</label>
+						<input th:field="${movie.title}" class="form-control"/></div>
+								<span th:errors="${movie.title}" style="color:red;"></span>
 					
-					<label for="t">Title :</label>
-						<div><input type="text" id="t" th:field="${movie.title}" /></div><br/>
-		
-					<label for="y">Year :</label> 
-						<div><input type="text" id="y" th:field="${movie.year}" placeholder="2020"/></div><br/>
-						
-					<label for="p">Points :</label> 
-						<div><input type="text" id="p" th:field="${movie.points}" /></div><br/>
+					<div class="form-group">			
+					<label>Year :</label> 
+						<input value="" th:field="${movie.year}" class="form-control"/>
+								<span th:errors="${movie.year}" style="color:red;"></span></div>
+					
+					<div class="form-group">	
+					<label>Points :</label> 
+						<input value="" th:field="${movie.points}" class="form-control"/>
+								<span th:errors="${movie.points}" style="color:red;"></span></div>
 						
 					<label for="genrelist">Genre</label>
 						<select id="genrelist" th:field="*{genre}" class="form-control">
@@ -32,10 +38,18 @@
     					</select>
     				<br/>
 						<div><input type="submit" class="btn btn-primary" value="Submit" /> 
-						<input type="reset" class="btn btn-primary" value="Reset" /> </div>
+						<input type="button" onClick="clearFields()" class="btn btn-primary" value="Reset"/> </div>
 				</form>
     		</div>
     </div>
+    
+    <script>
+    function clearFields() {
+    	document.getElementById("title").value="";
+    	document.getElementById("year").value="";
+    	document.getElementById("points").value="";
+    }
+    </script>
 
 </body>
 </html>

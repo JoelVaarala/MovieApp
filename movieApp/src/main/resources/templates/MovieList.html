@@ -7,7 +7,7 @@
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{../css/bootstrap.min.css}" />
 </head>
-<body>
+<body style="background-color:lightblue;">
 	
 	<div class="container" sec:authorize="isAuthenticated()">
 	
@@ -16,7 +16,7 @@
 	</div>
 	
 	<div class="col-md-4" style="padding:30px 0" >
-		<h3 th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]</h3>
+		<h3 th:inline="text">Signed in (as [[${#httpServletRequest.remoteUser}]])</h3>
 	</div>	
 		
 	<div class="col-md-4" style="padding:30px 0">
@@ -33,7 +33,7 @@
 	</div>
 	
 	<div class="col-md-4" style="padding:30px 0">
-		<h3 th:inline="text">Would you like to sign in?</h3>
+		<h3 th:inline="text">Would you like to sign in? -></h3>
 	</div>
 	
 	<div class="col-md-4" style="padding:30px 0">
@@ -45,7 +45,7 @@
 
 	<table class="table table-striped">
 		<tr>
-			<th>Title</th>
+			<th style="text-align: center">Title</th>
 			<th>Genre</th>
 			<th>Director</th>
 			<th>Year</th>
@@ -56,7 +56,7 @@
 
 		</tr>
 		<tr th:each="movie : ${movies}">
-			<td th:text="${movie.title}"></td>
+			<td th:text="${movie.title}" style="text-align: center"></td>
 			<td th:text="${movie.genre.nameOfGenre}"></td>
 			<td th:text="${movie.director.dirName}"></td>
 			<td th:text="${movie.year}"></td>
@@ -67,6 +67,7 @@
 				class="btn btn-danger" th:href="@{/deletemovie/{id}(id=${movie.id})}">Delete</a></td>
 		</tr>
 	</table>
-	<a class="btn btn-success" href="/newmovie" >Add movie</a>
+	<div style="text-align: center" sec:authorize="isAuthenticated()" ><a class="btn btn-success" href="/newmovie" >Add movie</a></div>
+	<div style="text-align: center" sec:authorize="isAnonymous()" ><a class="btn btn-success disabled"  href="/newmovie" >Add movie</a></div>
 </body>
 </html>

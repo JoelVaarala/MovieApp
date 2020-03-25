@@ -3,10 +3,13 @@ package practiceWork.movieApp.Web;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,8 +61,17 @@ public class MovieController {
 	// form data receiver
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveMovie(@ModelAttribute Movie movie) {
-		movieRepository.save(movie);
+	public String saveMovie(@ModelAttribute @Valid Movie newMovie, Errors errors, Model model) {
+		
+		
+		if (errors.hasErrors()) {
+			model.addAttribute("genre", genreRepository.findAll());
+			model.addAttribute("director", directorRepository.findAll());
+			model.addAttribute("errorMsg", "Invalid data, try again!");
+			return "MovieForm";
+		}
+		
+		movieRepository.save(newMovie);
 		return "redirect:/movielist";
 	}
 	

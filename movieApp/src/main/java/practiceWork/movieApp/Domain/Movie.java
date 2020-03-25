@@ -6,8 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+//import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -17,8 +23,19 @@ public class Movie {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
+	@NotNull(message = "Remember title")
+	@Size(min=2, max=50, message="Title has to be between 2-50 characters")
 	private String title;
+	
+	@Min(value = 1800, message = "Too early production")
+	@Max(value = 2020, message = "No future movies accepted")
+	@NotNull(message = "Empty field")
 	private int year;
+	
+	@Min(value = 0, message = "Cant go negative")
+	@Max(value = 5, message = "Remember the scale (0-5)")
+	@NotNull(message = "Empty field")
 	private int points;
 	
 	@ManyToOne

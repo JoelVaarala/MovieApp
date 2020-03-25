@@ -70,6 +70,7 @@ public class MovieAppApplication {
 			movieRepository.save(new Movie("Ready Player One", director1, genre1, 2018, 3));
 			movieRepository.save(new Movie("Django unchained", director2, genre3, 2012, 4));
 			movieRepository.save(new Movie("Night of the living dead", director5, genre4, 1992, 5));
+			movieRepository.save(new Movie("Sudden Impact", director3, genre1, 1987, 2));
 			
 			// Create users: admin/admin (ohjelmointi)  user/user (palvelimet)
 			User user1 = new User("user", "$2a$10$2R.Y8lRpO4j7/56Veje6aessT4JY5FkgRDFUjAYlh0CSvQHSsY5ca", "email@1","USER");
