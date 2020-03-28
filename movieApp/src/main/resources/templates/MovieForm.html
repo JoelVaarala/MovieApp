@@ -8,8 +8,9 @@
 <body style="background-color:lightblue;">
 	<div>
 		<h1 style="padding-left:90px;">New Movie:</h1>
-		<p th:text="${errorMsg}" style="color:red;"></p>
+
 			<div class="col-md-4">
+			<p th:text="${errorMsg}" style="color:red;"></p>
 				<form action="#" th:action="@{/save}"  th:object= ${movie} method="post" id="movieForm">
 					
 					<div class="form-group">

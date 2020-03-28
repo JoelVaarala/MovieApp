@@ -14,8 +14,13 @@
 	
 					
 					<div>Title: <input type="text" th:field="${movie.title}" class="form-control"/></div>
+					<span th:errors="${movie.title}" style="color:red;"></span>
+					
 					<div>Year: <input type="text" th:field="${movie.year}" class="form-control"/></div>
+					<span th:errors="${movie.year}" style="color:red;"></span>
+					
 					<div>Points: <input type="text" th:field="${movie.points}" class="form-control"/></div>
+					<span th:errors="${movie.points}" style="color:red;"></span>
 					
 					<label for="genrelist">Genre</label>
 						<select id="genrelist" th:field="*{genre}" class="form-control">
