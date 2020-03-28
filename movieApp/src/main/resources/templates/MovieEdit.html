@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Movie edit</title>
+    <title>Editing</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
 </head>
@@ -19,7 +19,7 @@
 					<div>Year: <input type="text" th:field="${movie.year}" class="form-control"/></div>
 					<span th:errors="${movie.year}" style="color:red;"></span>
 					
-					<div>Points: <input type="text" th:field="${movie.points}" class="form-control"/></div>
+					<div>Rating (0-5): <input type="text" th:field="${movie.points}" class="form-control"/></div>
 					<span th:errors="${movie.points}" style="color:red;"></span>
 					
 					<label for="genrelist">Genre</label>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<title>Movie List</title>
+<title>Quarantine Movies</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{../css/bootstrap.min.css}" />
@@ -12,7 +12,7 @@
 	<div class="container" sec:authorize="isAuthenticated()">
 	
 	<div class="col-md-4" style="padding:20px 0" >
-		<h1>Qurantine Movies</h1>
+		<h1>Quarantine Movies</h1>
 	</div>
 	
 	<div class="col-md-4" style="padding:30px 0" >
@@ -29,11 +29,11 @@
 	<div class="container" sec:authorize="isAnonymous()">
 	
 	<div class="col-md-4" style="padding:20px 0" >
-		<h1>Qurantine Movies</h1>
+		<h1>Quarantine Movies</h1>
 	</div>
 	
 	<div class="col-md-4" style="padding:30px 0">
-		<h3 th:inline="text">Would you like to sign in? -></h3>
+		<h3 th:inline="text">Would you like to sign in?</h3>
 	</div>
 	
 	<div class="col-md-4" style="padding:30px 0; text-align:center;">
@@ -68,6 +68,6 @@
 		</tr>
 	</table>
 	<div style="text-align: center" sec:authorize="isAuthenticated()" ><a class="btn btn-success" href="/newmovie" >Add movie</a></div>
-	<div style="text-align: center" sec:authorize="isAnonymous()" ><a class="btn btn-success disabled"  href="/newmovie" >Add movie</a></div>
+	<div style="text-align: center" sec:authorize="isAnonymous()" ><a class="btn btn-success disabled" href="/newmovie" >Add movie</a></div>
 </body>
 </html>
