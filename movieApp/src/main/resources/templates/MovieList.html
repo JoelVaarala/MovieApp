@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<title>Quarantine Movies</title>
+<title th:text="#{header}"></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{../css/bootstrap.min.css}" />
@@ -11,15 +11,18 @@
 	
 	<div class="container" sec:authorize="isAuthenticated()">
 	
-	<div class="col-md-4" style="padding:20px 0" >
-		<h1>Quarantine Movies</h1>
+	<div class="col-md-4" style="padding:40px 0 40px 0" >
+		<h1 th:text="#{header}"></h1>
 	</div>
 	
-	<div class="col-md-4" style="padding:30px 0" >
-		<h3 th:inline="text"><u>Signed in as  "[[${#httpServletRequest.remoteUser}]]"</u></h3>
+	<div class="col-md-4" style="padding:40px 0 0 50px" >
+		<h3 th:inline="text">
+		<i th:text="#{signedas}"></i>
+		 "[[${#httpServletRequest.remoteUser}]]"
+		 </h3>
 	</div>	
 		
-	<div class="col-md-4" style="padding:30px 0; text-align:center;">
+	<div class="col-md-4" style="padding:40px 10px 0 0; text-align:center;">
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-danger"/>
 		</form>
@@ -29,29 +32,29 @@
 	<div class="container" sec:authorize="isAnonymous()">
 	
 	<div class="col-md-4" style="padding:20px 0" >
-		<h1>Quarantine Movies</h1>
+		<h1 th:text="#{header}"></h1>
 	</div>
 	
 	<div class="col-md-4" style="padding:30px 0">
-		<h3 th:inline="text">Would you like to sign in?</h3>
+		<h3 th:inline="text" th:text="#{wyltsi}"></h3>
 	</div>
 	
 	<div class="col-md-4" style="padding:30px 0; text-align:center;">
 		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign in" class="btn btn-primary"/>
+			<input type="submit" class="btn btn-primary" value="Sign in"/>
 		</form>
 	</div>
 	</div>
 
 	<table class="table table-striped">
 		<tr>
-			<th style="text-align: center">Title</th>
-			<th>Genre</th>
-			<th>Director</th>
-			<th>Year</th>
-			<th style="text-align: center">Rating 0-5</th>
-			<th sec:authorize="hasAuthority('ADMIN')">Edit</th>
-			<th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+			<th style="text-align: center" th:text="#{title}"></th>
+			<th th:text="#{genre}"></th>
+			<th th:text="#{director}"></th>
+			<th th:text="#{year}"></th>
+			<th style="text-align: center" th:text="#{rating}"></th>
+			<th sec:authorize="hasAuthority('ADMIN')" th:text="#{edit}"></th>
+			<th sec:authorize="hasAuthority('ADMIN')" th:text="#{delete}"></th>
 			<th hidden="hidden" sec:authorize="hasRole('ADMIN')" />
 
 		</tr>
@@ -62,12 +65,33 @@
 			<td th:text="${movie.year}"></td>
 			<td th:text="${movie.points}" style="text-align: center"></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a
-				class="btn btn-warning" th:href="@{/edit/{id}(id=${movie.id})}">Edit</a></td>
+				class="btn btn-warning" th:href="@{/edit/{id}(id=${movie.id})}" th:text="#{edit}"></a></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a
-				class="btn btn-danger" th:href="@{/deletemovie/{id}(id=${movie.id})}">Delete</a></td>
+				class="btn btn-danger" th:href="@{/deletemovie/{id}(id=${movie.id})}" th:text="#{delete}"></a></td>
 		</tr>
 	</table>
-	<div style="text-align: center" sec:authorize="isAuthenticated()" ><a class="btn btn-success" href="/newmovie" >Add movie</a></div>
-	<div style="text-align: center" sec:authorize="isAnonymous()" ><a class="btn btn-success disabled" href="/newmovie" >Add movie</a></div>
+	<div style="text-align: center" sec:authorize="isAuthenticated()" ><a class="btn btn-success" href="/newmovie" th:text="#{add}"></a></div>
+	<div style="text-align: center" sec:authorize="isAnonymous()" ><a class="btn btn-success disabled" href="/newmovie" th:text="#{add}"></a></div>
+
+	<span th:text="#{lang.change}"></span>
+	<select id="locales">
+		<option value=""></option>
+		<option value="en" th:text="#{lang.en}"></option>
+		<option value="es" th:text="#{lang.es}"></option>
+	</select>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#locales").change(function (){
+			var selectedOption = $('#locales').val();
+			if (selectedOption != ''){
+				window.location.replace('movielist?lang=' + selectedOption);
+			}
+		});
+	});
+	</script>
+
 </body>
 </html>

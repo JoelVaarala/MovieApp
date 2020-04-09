@@ -61,17 +61,24 @@ public class MovieController {
 	// form data receiver
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveMovie(@ModelAttribute @Valid Movie newMovie, Errors errors, Model model) {
+	public String saveMovie(@ModelAttribute @Valid Movie Movie, Errors errors, Model model) {
 		
 		
 		if (errors.hasErrors()) {
 			model.addAttribute("genre", genreRepository.findAll());
 			model.addAttribute("director", directorRepository.findAll());
 			model.addAttribute("errorMsg", "Invalid data, try again!");
+			
+			// If movie is null, return MovieEdit with desired id, else return form for a new movie
+			if(Movie != null) {
+				return "MovieEdit";
+			}else {
 			return "MovieForm";
 		}
+	}
 		
-		movieRepository.save(newMovie);
+		
+		movieRepository.save(Movie);
 		return "redirect:/movielist";
 	}
 	
