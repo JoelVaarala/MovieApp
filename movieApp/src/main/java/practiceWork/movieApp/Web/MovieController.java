@@ -69,7 +69,7 @@ public class MovieController {
 			model.addAttribute("director", directorRepository.findAll());
 			model.addAttribute("errorMsg", "Invalid data, try again!");
 			
-			// If movie is null, return MovieEdit with desired id, else return form for a new movie
+			// If movie isn't null, return MovieEdit with desired id, else return form for a new movie
 			if(Movie != null) {
 				return "MovieEdit";
 			}else {
@@ -101,7 +101,7 @@ public class MovieController {
 	}
 	/*
 	
-	// Rest contollers
+	// Rest (@ResponseBody)
 	
 	// Rest-service for getting all movies (JSON)
 	@RequestMapping(value="/movies", method = RequestMethod.GET)
