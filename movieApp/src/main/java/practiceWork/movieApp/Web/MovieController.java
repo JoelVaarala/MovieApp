@@ -36,7 +36,7 @@ public class MovieController {
 	// login
 	@RequestMapping(value="/login")
 	public String login() {
-		return "login";
+		return "Login";
 	}
 	
 	// movie listing
