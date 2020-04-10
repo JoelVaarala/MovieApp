@@ -15,6 +15,8 @@
 	<description>Course project for Spring Boot</description>
 
 	<properties>
+		<project.build.sourceEnconding>UTF-8</project.build.sourceEnconding>
+		<project.reporting.outputEnconding>UTF-8</project.reporting.outputEnconding>
 		<java.version>11</java.version>
 	</properties>
 
@@ -71,7 +73,7 @@
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator-annotation-processor</artifactId>
-			<version>6.0.2.Final</version>
+			<version>6.0.2.Final</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
 			<groupId>javax.el</groupId>

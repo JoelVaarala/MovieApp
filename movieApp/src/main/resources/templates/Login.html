@@ -31,6 +31,27 @@
           <a th:href="@{/signup}" class="btn btn-outline-dark" th:text="#{signUp}"></a>
         </div>
         </form>
-       </div> 
+       </div> <br/><br/>
+       
+       <div class="col-md-4" style="width:200px;">
+	<select id="locales" class="form-control form-control-sm">
+		<option value="" th:text="#{lang.change}"></option>
+		<option value="en" th:text="#{lang.en}"></option>
+		<option value="es" th:text="#{lang.es}"></option>
+	</select>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#locales").change(function (){
+			var selectedOption = $('#locales').val();
+			if (selectedOption != ''){
+				window.location.replace('login?lang=' + selectedOption);
+			}
+		});
+	});
+	</script>
+       
     </body>
 </html>

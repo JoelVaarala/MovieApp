@@ -11,7 +11,7 @@
 	
 	<div class="container" sec:authorize="isAuthenticated()">
 	
-	<div class="col-md-4" style="padding:40px 0 40px 0" >
+	<div class="col-md-4" style="padding:40px 10px 40px 0px" >
 		<h1 th:text="#{header}"></h1>
 	</div>
 	
@@ -24,8 +24,9 @@
 		
 	<div class="col-md-4" style="padding:40px 10px 0 0; text-align:center;">
 		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out" class="btn btn-danger"/>
+			 <input type="submit" value="Sing out" class="btn btn-danger"/> 
 		</form>
+		
 	</div>
 	</div>
 	
@@ -72,14 +73,14 @@
 	</table>
 	<div style="text-align: center" sec:authorize="isAuthenticated()" ><a class="btn btn-success" href="/newmovie" th:text="#{add}"></a></div>
 	<div style="text-align: center" sec:authorize="isAnonymous()" ><a class="btn btn-success disabled" href="/newmovie" th:text="#{add}"></a></div>
-
-	<span th:text="#{lang.change}"></span>
-	<select id="locales">
-		<option value=""></option>
+	
+	<div class="col-md-4" style="width:200px;">
+	<select id="locales" class="form-control form-control-sm">
+		<option value="" th:text="#{lang.change}"></option>
 		<option value="en" th:text="#{lang.en}"></option>
 		<option value="es" th:text="#{lang.es}"></option>
 	</select>
-	
+	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
 	</script>
 	<script type="text/javascript">
