@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -104,12 +105,14 @@ public class MovieController {
 	// Rest-Controllers (@ResponseBody)
 	
 	// Rest-service for getting all movies (JSON)
+	@CrossOrigin
 	@RequestMapping(value="/movies", method = RequestMethod.GET)
 	public @ResponseBody List<Movie> movieListRest() {
 		return (List<Movie>) movieRepository.findAll();
 	}
 			
 	// Rest-service for getting movie by Id
+	@CrossOrigin
 	@RequestMapping(value="/movies/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<Movie> findMovieRest(@PathVariable("id") int id) {
 		return movieRepository.findById(id);
