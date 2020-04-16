@@ -40,7 +40,7 @@ public class MovieController {
 	}
 	
 	// movie listing
-	@RequestMapping(value = "/movielist", method = RequestMethod.GET)
+	@RequestMapping(value = {"/movielist", "/"}, method = RequestMethod.GET)
 	public String getMovies(Model model) {
 	List<Movie> movies = (List<Movie>) movieRepository.findAll();
 	model.addAttribute("movies", movies);
@@ -99,9 +99,9 @@ public class MovieController {
 		movieRepository.deleteById(movieId);
 		return "redirect:../movielist";
 	}
-	/*
 	
-	// Rest (@ResponseBody)
+	
+	// Rest-Controllers (@ResponseBody)
 	
 	// Rest-service for getting all movies (JSON)
 	@RequestMapping(value="/movies", method = RequestMethod.GET)
@@ -114,7 +114,7 @@ public class MovieController {
 	public @ResponseBody Optional<Movie> findMovieRest(@PathVariable("id") int id) {
 		return movieRepository.findById(id);
 	}
-	*/
+	
 }
 
 
