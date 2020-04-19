@@ -27,7 +27,8 @@
           <input type="password" class="form-control" name="password">
         </div>
         <div>
-          <input type="submit" class="btn btn-primary" value="Sign in"/>
+         <!--   <input type="submit" class="btn btn-primary" value="Sign in"/> -->
+         <button type="submit" class="btn btn-primary" th:text="#{signin}" value="Sign in"></button>
           <a th:href="@{/signup}" class="btn btn-outline-dark" th:text="#{signUp}"></a>
         </div>
         </form>

@@ -40,7 +40,7 @@ public class MovieController {
 		return "Login";
 	}
 	
-	// movie listing
+	// movie listing / two endpoints for easier deployment
 	@RequestMapping(value = {"/movielist", "/"}, method = RequestMethod.GET)
 	public String getMovies(Model model) {
 	List<Movie> movies = (List<Movie>) movieRepository.findAll();
@@ -102,7 +102,7 @@ public class MovieController {
 	}
 	
 	
-	// Rest-Controllers (@ResponseBody)
+	// Rest-Controllers (@ResponseBody) (@CrossOrigin, without this React fetch fails)
 	
 	// Rest-service for getting all movies (JSON)
 	@CrossOrigin
