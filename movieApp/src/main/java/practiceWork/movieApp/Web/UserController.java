@@ -17,46 +17,43 @@ import practiceWork.movieApp.Domain.UserRepository;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	private UserRepository repository;
-	
+
 	@RequestMapping(value = "/signup")
 	public String addUser(Model model) {
 		model.addAttribute("signupform", new SignupForm());
 		return "signup";
 	}
-	
-	@RequestMapping(value = "saveuser", method= RequestMethod.POST)
+
+	@RequestMapping(value = "saveuser", method = RequestMethod.POST)
 	public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
 		if (!bindingResult.hasErrors()) {
-			if(signupForm.getPassword().equals(signupForm.getPasswordCheck())) {
+			if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) {
 				String pswd = signupForm.getPassword();
 				BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 				String hashPswd = bc.encode(pswd);
-				
+
 				User newUser = new User();
 				newUser.setPasswordHash(hashPswd);
 				newUser.setEmail(signupForm.getEmail());
 				newUser.setUsername(signupForm.getUsername());
 				newUser.setRole("USER");
-				if(repository.findByUsername(signupForm.getUsername()) == null) {
+				if (repository.findByUsername(signupForm.getUsername()) == null) {
 					repository.save(newUser);
-				}
-				else {
+				} else {
 					bindingResult.rejectValue("username", "err.username", "Username already exists");
 					return "signup";
 				}
+			} else {
+				bindingResult.rejectValue("passwordCheck", "err.passwordCheck", "Passwords does not match");
+				return "signup";
 			}
-				else {
-					bindingResult.rejectValue("passwordCheck", "err.passwordCheck", "Passwords does not match");
-					return "signup";
-				}
-			}
-				else {
-					return "signup";
+		} else {
+			return "signup";
 		}
-			return "redirect:/login";
+		return "redirect:/login";
 	}
-	
+
 }

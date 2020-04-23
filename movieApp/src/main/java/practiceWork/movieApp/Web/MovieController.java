@@ -24,65 +24,64 @@ import practiceWork.movieApp.Domain.DirectorRepository;
 
 @Controller
 public class MovieController {
-	
+
 	@Autowired
 	private MovieRepository movieRepository;
-	
+
 	@Autowired
 	private GenreRepository genreRepository;
-	
+
 	@Autowired
 	private DirectorRepository directorRepository;
 
 	// login
-	@RequestMapping(value="/login")
+	@RequestMapping(value = "/login")
 	public String login() {
 		return "Login";
 	}
-	
+
 	// movie listing / two endpoints for easier deployment
-	@RequestMapping(value = {"/movielist", "/"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/movielist", "/" }, method = RequestMethod.GET)
 	public String getMovies(Model model) {
-	List<Movie> movies = (List<Movie>) movieRepository.findAll();
-	model.addAttribute("movies", movies);
-	return "MovieList";
-	
+		List<Movie> movies = (List<Movie>) movieRepository.findAll();
+		model.addAttribute("movies", movies);
+		return "MovieList";
+
 	}
-	
+
 	// empty movie form
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	@RequestMapping(value = "/newmovie", method = RequestMethod.GET)
 	public String getNewMovieForm(Model model) {
-	model.addAttribute("movie", new Movie());
-	model.addAttribute("genre", genreRepository.findAll());
-	model.addAttribute("director", directorRepository.findAll());
-	return "MovieForm";
+		model.addAttribute("movie", new Movie());
+		model.addAttribute("genre", genreRepository.findAll());
+		model.addAttribute("director", directorRepository.findAll());
+		return "MovieForm";
 	}
-	
+
 	// form data receiver
 	@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveMovie(@ModelAttribute @Valid Movie Movie, Errors errors, Model model) {
-		
-		
+
 		if (errors.hasErrors()) {
 			model.addAttribute("genre", genreRepository.findAll());
 			model.addAttribute("director", directorRepository.findAll());
 			model.addAttribute("errorMsg", "Invalid data, try again!");
-			
-			// If movie isn't null, return MovieEdit with desired id, else return form for a new movie
-			if(Movie != null) {
+
+			// If movie isn't null, return MovieEdit with desired id, else return form for a
+			// new movie
+			if (Movie != null) {
 				return "MovieEdit";
-			}else {
-			return "MovieForm";
+			} else {
+				return "MovieForm";
+			}
 		}
-	}
-		
-		
+
 		movieRepository.save(Movie);
 		return "redirect:/movielist";
 	}
-	
+
 	// movie edit
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/edit/{id}")
@@ -92,7 +91,7 @@ public class MovieController {
 		model.addAttribute("director", directorRepository.findAll());
 		return "MovieEdit";
 	}
-	
+
 	// movie delete
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/deletemovie/{id}", method = RequestMethod.GET)
@@ -100,24 +99,22 @@ public class MovieController {
 		movieRepository.deleteById(movieId);
 		return "redirect:../movielist";
 	}
-	
-	
-	// Rest-Controllers (@ResponseBody) (@CrossOrigin, without this React fetch fails)
-	
+
+	// Rest-Controllers (@ResponseBody) (@CrossOrigin, without this React fetch
+	// fails)
+
 	// Rest-service for getting all movies (JSON)
 	@CrossOrigin
-	@RequestMapping(value="/movies", method = RequestMethod.GET)
+	@RequestMapping(value = "/movies", method = RequestMethod.GET)
 	public @ResponseBody List<Movie> movieListRest() {
 		return (List<Movie>) movieRepository.findAll();
 	}
-			
+
 	// Rest-service for getting movie by Id
 	@CrossOrigin
-	@RequestMapping(value="/movies/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/movies/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<Movie> findMovieRest(@PathVariable("id") int id) {
 		return movieRepository.findById(id);
 	}
-	
+
 }
-
-

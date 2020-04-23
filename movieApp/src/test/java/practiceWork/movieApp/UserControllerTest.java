@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import practiceWork.movieApp.Web.UserController;
 
+
 @SpringBootTest
 public class UserControllerTest {
 	

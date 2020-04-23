@@ -17,27 +17,27 @@ import practiceWork.movieApp.Domain.UserRepository;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class UserRepositoryTest {
-	
+
 	@Autowired
 	private UserRepository userrepository;
-	
+
 	@Test
-    public void findByIdCheckIfNull() {
-        User user = userrepository.findById(1).get();
-        assertNotNull(user);
-    }
-	
+	public void findByIdCheckIfNull() {
+		User user = userrepository.findById(1).get();
+		assertNotNull(user);
+	}
+
 	@Test
-    public void createNewUser() {
-    	User user = new User("UserT","UserT","User@t.com","USER");
-    	userrepository.save(user);
-    	assertThat(user.getId()).isNotNull();
-    }
-	
+	public void createNewUser() {
+		User user = new User("UserT", "UserT", "User@t.com", "USER");
+		userrepository.save(user);
+		assertThat(user.getId()).isNotNull();
+	}
+
 	@Test
 	public void deleteUsers() {
-    	userrepository.deleteAll();
-    	assertThat(userrepository.count()).isEqualTo(0);
+		userrepository.deleteAll();
+		assertThat(userrepository.count()).isEqualTo(0);
 	}
 
 }

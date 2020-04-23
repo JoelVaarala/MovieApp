@@ -11,19 +11,18 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-
 @Entity
 public class Genre {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int genreId;
 	private String nameOfGenre;
-	
+
 	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "genre")
 	private List<Movie> movies;
-	
+
 	public Genre() {
 		super();
 	}

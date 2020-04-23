@@ -11,19 +11,18 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-
 @Entity
 public class Director {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int dirId;
 	private String dirName;
-	
+
 	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "director")
 	private List<Movie> movies;
-	
+
 	public Director() {
 		super();
 	}
@@ -53,7 +52,5 @@ public class Director {
 	public String toString() {
 		return "Director [dirId=" + dirId + ", dirName=" + dirName + "]";
 	}
-	
-	
 
 }

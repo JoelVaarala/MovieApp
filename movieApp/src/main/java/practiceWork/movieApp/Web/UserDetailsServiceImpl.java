@@ -11,7 +11,7 @@ import practiceWork.movieApp.Domain.User;
 import practiceWork.movieApp.Domain.UserRepository;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService  {
+public class UserDetailsServiceImpl implements UserDetailsService {
 	private final UserRepository repository;
 
 	@Autowired
@@ -19,14 +19,11 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 		this.repository = userRepository;
 	}
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
-    {   
-    	User curruser = repository.findByUsername(username);
-        UserDetails user = new org.springframework.security.core.userdetails.User(username, curruser.getPasswordHash(), 
-        		AuthorityUtils.createAuthorityList(curruser.getRole()));
-        return user;
-    }   
-} 
-
-
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User curruser = repository.findByUsername(username);
+		UserDetails user = new org.springframework.security.core.userdetails.User(username, curruser.getPasswordHash(),
+				AuthorityUtils.createAuthorityList(curruser.getRole()));
+		return user;
+	}
+}

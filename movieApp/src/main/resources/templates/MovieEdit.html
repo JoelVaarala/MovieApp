@@ -1,47 +1,51 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title th:text="#{editing}"></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
+<title th:text="#{editing}"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{../css/bootstrap.min.css}" />
 </head>
-<body style="background-color:lightblue;">
-			<div class="col-md-4">
-			<h1 th:text="#{movie}"></h1>
-			<p th:text="${errorMsg}" style="color:red;"></p>
-			<form action="#" th:action="@{../save}"  th:object= "${movie}" method="post">
-	
-				<input type="hidden" th:field="${movie.id}" />
-	
-					<div class="form-group">
-					<label th:text="#{titleM}"></label>
-						<input th:field="${movie.title}" class="form-control"/>
-								<span th:errors="${movie.title}" style="color:red;"></span></div>
-					
-					<div class="form-group">			
-					<label th:text="#{yearM}"></label> 
-						<input value="" th:field="${movie.year}" class="form-control"/>
-								<span th:errors="${movie.year}" style="color:red;"></span></div>
-					
-					<div class="form-group">	
-					<label th:text="#{ratingM}"></label> 
-						<input value="" th:field="${movie.points}" class="form-control"/>
-								<span th:errors="${movie.points}" style="color:red;"></span></div>
-						
-					<label for="genrelist" th:text="#{genreM}"></label>
-						<select id="genrelist" th:field="*{genre}" class="form-control">
-       						<option th:each="genre: ${genre}" th:value="${genre.genreId}" th:text="${genre.nameOfGenre}"></option>
-    					</select>
-						
-					<label for="directorlist" th:text="#{directorM}"></label>
-						<select id="directorlist" th:field="*{director}" class="form-control">
-       						<option th:each="director: ${director}" th:value="${director.dirId}" th:text="${director.dirName}"></option>
-    					</select>
-				<br/>
-				<input type="submit" class="btn btn-primary" value="Save" /> 
-		
-			</form>
-		</div>
-    
+<body style="background-color: lightblue;">
+	<div class="col-md-4">
+		<h1 th:text="#{movie}"></h1>
+		<p th:text="${errorMsg}" style="color: red;"></p>
+		<form action="#" th:action="@{../save}" th:object="${movie}"
+			method="post">
+
+			<input type="hidden" th:field="${movie.id}" />
+
+			<div class="form-group">
+				<label th:text="#{titleM}"></label> <input th:field="${movie.title}"
+					class="form-control" /> <span th:errors="${movie.title}"
+					style="color: red;"></span>
+			</div>
+
+			<div class="form-group">
+				<label th:text="#{yearM}"></label> <input value=""
+					th:field="${movie.year}" class="form-control" /> <span
+					th:errors="${movie.year}" style="color: red;"></span>
+			</div>
+
+			<div class="form-group">
+				<label th:text="#{ratingM}"></label> <input value=""
+					th:field="${movie.points}" class="form-control" /> <span
+					th:errors="${movie.points}" style="color: red;"></span>
+			</div>
+
+			<label for="genrelist" th:text="#{genreM}"></label> <select
+				id="genrelist" th:field="*{genre}" class="form-control">
+				<option th:each="genre: ${genre}" th:value="${genre.genreId}"
+					th:text="${genre.nameOfGenre}"></option>
+			</select> <label for="directorlist" th:text="#{directorM}"></label> <select
+				id="directorlist" th:field="*{director}" class="form-control">
+				<option th:each="director: ${director}" th:value="${director.dirId}"
+					th:text="${director.dirName}"></option>
+			</select> <br /> <input type="submit" class="btn btn-primary" value="Save" />
+
+		</form>
+	</div>
+
 </body>
 </html>

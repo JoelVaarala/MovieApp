@@ -4,23 +4,23 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class SignupForm {
-	
+
 	@NotEmpty
-	@Size(min=5, max=30, message="Username must be atleast 5 characters")
+	@Size(min = 5, max = 30, message = "Username must be atleast 5 characters")
 	private String username = "";
-	
+
 	@NotEmpty
-	@Size(min=7, max=30)
+	@Size(min = 7, max = 30)
 	private String email = "";
-	
+
 	@NotEmpty
-	@Size(min=7, max=30, message="Password must be atleast 7 characters")
+	@Size(min = 7, max = 30, message = "Password must be atleast 7 characters")
 	private String password = "";
-	
+
 	@NotEmpty
-	@Size(min=5, max=30, message="Passwords doesn't match")
+	@Size(min = 5, max = 30, message = "Passwords doesn't match")
 	private String passwordCheck = "";
-	
+
 	@NotEmpty
 	private String role = "USER";
 
@@ -63,7 +63,5 @@ public class SignupForm {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-		
 
 }

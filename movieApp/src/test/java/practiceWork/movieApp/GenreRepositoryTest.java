@@ -16,7 +16,7 @@ import practiceWork.movieApp.Domain.GenreRepository;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class GenreRepositoryTest {
-	
+
 	@Autowired
 	private GenreRepository genrerepository;
 
@@ -24,20 +24,20 @@ public class GenreRepositoryTest {
 	public void FindGenre() {
 		List<Genre> genre = genrerepository.findByNameOfGenre("Action");
 		assertThat(genre).hasSize(1);
-        assertThat(genre.get(0).getNameOfGenre()).isEqualTo("Action");
+		assertThat(genre.get(0).getNameOfGenre()).isEqualTo("Action");
 	}
-	
+
 	@Test
 	public void AddGenre() {
-		Genre genre = new Genre ("TestGen");
+		Genre genre = new Genre("TestGen");
 		genrerepository.save(genre);
-    	assertThat(genre.getNameOfGenre()).isNotNull();
+		assertThat(genre.getNameOfGenre()).isNotNull();
 	}
-	
+
 	@Test
 	public void DeleteGenre() {
 		genrerepository.deleteAll();
-    	assertThat(genrerepository.count()).isEqualTo(0);
+		assertThat(genrerepository.count()).isEqualTo(0);
 	}
-	
+
 }

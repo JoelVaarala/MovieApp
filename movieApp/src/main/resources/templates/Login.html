@@ -1,61 +1,71 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-    <head>
-        <title th:text="#{login}"></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
-				th:href="@{../css/bootstrap.min.css}" />
-    </head>
-    <body style="background-color:lightblue;">
-    <div class="col-md-4">
-    <h1 th:text="#{login}"></h1>
-        <div th:if="${param.error}" th:text="#{iuap}" style="color:red;">
-            
-        </div>
-        <div th:if="${param.logout}" th:text="#{yhblo}">
-            
-        </div>
-        <br/>
-        <form th:action="@{/login}" method="post">
-        <div class="form-group">
-          <label for="username" th:text="#{username}" style="font-weight:bold;"></label>
-          <input type="text" class="form-control" name="username">
-        </div>
-        <div class="form-group">
-          <label for="password" th:text="#{password}" style="font-weight:bold;"></label>
-          <input type="password" class="form-control" name="password">
-        </div>
-        <div>
-         <!--   <input type="submit" class="btn btn-primary" value="Sign in"/> -->
-         <button type="submit" class="btn btn-primary" th:text="#{signin}" value="Sign in"></button>
-          <a th:href="@{/signup}" class="btn btn-outline-dark" th:text="#{signUp}"></a>
-        </div>
-        </form>
-       </div> <br/><br/>
-       
-       <div class="col-md-4" style="width:200px;">
-       
-       <div><a th:href="@{/movielist}" th:text="#{main}"></a></div>
-       
-	<select id="locales" class="form-control form-control-sm">
-		<option value="" th:text="#{lang.change}"></option>
-		<option value="en" th:text="#{lang.en}"></option>
-		<option value="es" th:text="#{lang.es}"></option>
-	</select>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title th:text="#{login}"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{../css/bootstrap.min.css}" />
+</head>
+
+<body style="background-color: lightblue;">
+	<div class="col-md-4">
+		<h1 th:text="#{login}"></h1>
+		<div th:if="${param.error}" th:text="#{iuap}" style="color: red;">
+
+		</div>
+		<div th:if="${param.logout}" th:text="#{yhblo}"></div>
+		<br />
+		<form th:action="@{/login}" method="post">
+			<div class="form-group">
+				<label for="username" th:text="#{username}"
+					style="font-weight: bold;"></label> <input type="text"
+					class="form-control" name="username">
+			</div>
+			<div class="form-group">
+				<label for="password" th:text="#{password}"
+					style="font-weight: bold;"></label> <input type="password"
+					class="form-control" name="password">
+			</div>
+			<div>
+				<!--   <input type="submit" class="btn btn-primary" value="Sign in"/> -->
+				<button type="submit" class="btn btn-primary" th:text="#{signin}"
+					value="Sign in"></button>
+				<a th:href="@{/signup}" class="btn btn-outline-dark"
+					th:text="#{signUp}"></a>
+			</div>
+		</form>
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+	<br />
+	<br />
+
+	<div class="col-md-4" style="width: 200px;">
+
+		<div>
+			<a th:href="@{/movielist}" th:text="#{main}"></a>
+		</div>
+
+		<select id="locales" class="form-control form-control-sm">
+			<option value="" th:text="#{lang.change}"></option>
+			<option value="en" th:text="#{lang.en}"></option>
+			<option value="es" th:text="#{lang.es}"></option>
+		</select>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+		
 	</script>
 	<script type="text/javascript">
-	$(document).ready(function(){
-		$("#locales").change(function (){
-			var selectedOption = $('#locales').val();
-			if (selectedOption != ''){
-				window.location.replace('login?lang=' + selectedOption);
-			}
+		$(document).ready(function() {
+			$("#locales").change(function() {
+				var selectedOption = $('#locales').val();
+				if (selectedOption != '') {
+					window.location.replace('login?lang=' + selectedOption);
+				}
+			});
 		});
-	});
 	</script>
-       
-    </body>
+
+</body>
 </html>

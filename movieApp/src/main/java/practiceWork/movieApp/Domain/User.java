@@ -8,27 +8,27 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false, updatable = false)
 	private int id;
-	
+
 	// Username with unique constraint
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+	@Column(name = "username", nullable = false, unique = true)
+	private String username;
 
-    @Column(name = "password", nullable = false)
-    private String passwordHash;
-    
-    @Column(name = "email", nullable = false)
-    private String email;
+	@Column(name = "password", nullable = false)
+	private String passwordHash;
 
-    @Column(name = "role", nullable = false)
-    private String role;
-    
-    public User() {	
-    	}
+	@Column(name = "email", nullable = false)
+	private String email;
+
+	@Column(name = "role", nullable = false)
+	private String role;
+
+	public User() {
+	}
 
 	public User(String username, String passwordHash, String email, String role) {
 		super();
@@ -83,7 +83,5 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", passwordHash=" + passwordHash + ", email=" + email
 				+ ", role=" + role + "]";
 	}
-
-	
 
 }

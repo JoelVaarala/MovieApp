@@ -16,28 +16,28 @@ import practiceWork.movieApp.Domain.DirectorRepository;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class DirectorRepositoryTest {
-	
+
 	@Autowired
 	private DirectorRepository directorrepository;
-	
+
 	@Test
 	public void FindDirector() {
 		List<Director> director = directorrepository.findByDirName("Romero");
 		assertThat(director).hasSize(1);
-        assertThat(director.get(0).getDirName()).isEqualTo("Romero");
+		assertThat(director.get(0).getDirName()).isEqualTo("Romero");
 	}
-	
+
 	@Test
 	public void AddCategory() {
-		Director director = new Director ("TestDir");
+		Director director = new Director("TestDir");
 		directorrepository.save(director);
-    	assertThat(director.getDirName()).isNotNull();
+		assertThat(director.getDirName()).isNotNull();
 	}
-	
+
 	@Test
 	public void DeleteDirector() {
 		directorrepository.deleteAll();
-    	assertThat(directorrepository.count()).isEqualTo(0);
+		assertThat(directorrepository.count()).isEqualTo(0);
 	}
 
 }

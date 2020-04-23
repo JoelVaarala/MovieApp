@@ -2,36 +2,53 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{../css/bootstrap.min.css}" />
 <title th:text="#{newuser}"></title>
 </head>
-<body style="background-color:lightblue;">
+<body style="background-color: lightblue;">
 
-<div>
-	<h1 th:text="#{sign-up}"></h1>
-	<br/>
-	<div class="col-md-4">
-		<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
-			<div>
-					<label th:text="#{username}"></label> <input type="text" th:field="*{username}" class="form-control" /></div>
-					<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:red;" th:text="#{usernameErr}"></span>
-			
-			<div>
-					<label th:text="#{email}"></label> <input type="email" th:field="*{email}" class="form-control" /></div>
-					<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red;" th:text="#{emailErr}"></span>
-			
-			<div>
-					<label th:text="#{password}"></label> <input type="password" th:field="*{password}" class="form-control" /></div>
-					<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red;"></span>
-			
-			<div>
-					<label th:text="#{password2}"></label> <input type="password" th:field="*{passwordCheck}" class="form-control" /></div>
-					<span th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}" style="color:red;"></span>
-			
-					<div><input type="submit" class="btn btn-primary" value="Signup"></input></div>
-		</form>	
+	<div>
+		<h1 th:text="#{sign-up}"></h1>
+		<br />
+		<div class="col-md-4">
+			<form th:object="${signupform}" th:action="@{/saveuser}" action="#"
+				method="post">
+				<div>
+					<label th:text="#{username}"></label> <input type="text"
+						th:field="*{username}" class="form-control" />
+				</div>
+				<span th:if="${#fields.hasErrors('username')}"
+					th:errors="*{username}" style="color: red;"
+					th:text="#{usernameErr}"></span>
+
+				<div>
+					<label th:text="#{email}"></label> <input type="email"
+						th:field="*{email}" class="form-control" />
+				</div>
+				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+					style="color: red;" th:text="#{emailErr}"></span>
+
+				<div>
+					<label th:text="#{password}"></label> <input type="password"
+						th:field="*{password}" class="form-control" />
+				</div>
+				<span th:if="${#fields.hasErrors('password')}"
+					th:errors="*{password}" style="color: red;"></span>
+
+				<div>
+					<label th:text="#{password2}"></label> <input type="password"
+						th:field="*{passwordCheck}" class="form-control" />
+				</div>
+				<span th:if="${#fields.hasErrors('passwordCheck')}"
+					th:errors="*{passwordCheck}" style="color: red;"></span>
+
+				<div>
+					<input type="submit" class="btn btn-primary" value="Signup"></input>
+				</div>
+			</form>
+		</div>
 	</div>
-</div>
 
 </body>
 </html>
